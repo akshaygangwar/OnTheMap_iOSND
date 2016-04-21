@@ -73,8 +73,6 @@ class MapViewController: UIViewController, MKMapViewDelegate {
                         let lat = CLLocationDegrees(studentDictionary["latitude"] as! Double)
                         let long = CLLocationDegrees(studentDictionary["longitude"] as! Double)
                         let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
-                        print(lat)
-                        print(long)
                         
                         let first = studentDictionary["firstName"] as! String
                         let last = studentDictionary["lastName"] as! String
@@ -95,6 +93,34 @@ class MapViewController: UIViewController, MKMapViewDelegate {
             
         }
         task.resume()
+    }
+    
+    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
+        
+        let reuseId = "pin"
+        
+        var pinView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseId) as? MKPinAnnotationView
+        
+        if pinView == nil {
+            pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
+            pinView!.canShowCallout = true
+            pinView!.pinTintColor = UIColor.redColor()
+            pinView!.rightCalloutAccessoryView = UIButton(type: .DetailDisclosure)
+        }
+        else {
+            pinView!.annotation = annotation
+        }
+        
+        return pinView
+    }
+    
+    func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        if control == view.rightCalloutAccessoryView {
+            let app = UIApplication.sharedApplication()
+            if let toOpen = view.annotation?.subtitle! {
+                app.openURL(NSURL(string: toOpen)!)
+            }
+        }
     }
     
     
