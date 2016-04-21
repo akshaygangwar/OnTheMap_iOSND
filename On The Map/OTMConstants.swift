@@ -39,5 +39,6 @@ struct OTMConstants {
     struct ParseParameterValues {
         static let ApplicationID = "QrX47CA9cyuGewLdsL7o5Eb8iug6Em8ye0dnAbIr"
         static let RESTAPIKey = "QuWThTdiRmTux3YaDseUSEpUKo7aBYM737yKd4gY"
+        static let Limit = 100 // TODO: For testing purposes. Set to 100 before submission
     }
 }

@@ -41,7 +41,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     }
     
     func getStudentLocationData() {
-        let methodParameters = [OTMConstants.ParseParameterKeys.Limit:2]
+        let methodParameters = [OTMConstants.ParseParameterKeys.Limit:OTMConstants.ParseParameterValues.Limit]
         let url = createURL(methodParameters)
         let request = createRequest(url)
         let session = NSURLSession.sharedSession()
@@ -58,12 +58,45 @@ class MapViewController: UIViewController, MKMapViewDelegate {
                     print ("error in parsed JSON")
                 }
                 
-                print(parsedJSON)
+                guard let resultsDictionary = parsedJSON["results"] as? [[String:AnyObject]] else {
+                    print("Could not find key \"results\" in \(parsedJSON)")
+                    return
+                }
+                
+                print (resultsDictionary)
+                let appDelegate = self.initialiseAppDelegate()
+                appDelegate.locations = resultsDictionary
+                
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    var annotations = [MKPointAnnotation]()
+                    for studentDictionary in resultsDictionary {
+                        let lat = CLLocationDegrees(studentDictionary["latitude"] as! Double)
+                        let long = CLLocationDegrees(studentDictionary["longitude"] as! Double)
+                        let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
+                        print(lat)
+                        print(long)
+                        
+                        let first = studentDictionary["firstName"] as! String
+                        let last = studentDictionary["lastName"] as! String
+                        let mediaURL = studentDictionary["mediaURL"] as! String
+                        
+                        let annotation = MKPointAnnotation()
+                        annotation.coordinate = coordinate
+                        annotation.title = "\(first) \(last)"
+                        annotation.subtitle = mediaURL
+                        
+                        annotations.append(annotation)
+                    }
+                    
+                    self.mapView.addAnnotations(annotations)
+                })
+                
             }
             
         }
         task.resume()
     }
+    
     
     func initialiseAppDelegate() -> AppDelegate {
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
