@@ -15,7 +15,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var sessionID: String?
 
-
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         return true
@@ -43,6 +42,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
+
+}
+
+extension AppDelegate {
+    func otmURLFromParameters(parameters: [String:AnyObject]) -> NSURL {
+        let components = NSURLComponents()
+        components.scheme = OTMConstants.ParseConstants.ApiScheme
+        components.host = OTMConstants.ParseConstants.ApiHost
+        components.path = OTMConstants.ParseConstants.ApiPath
+        components.queryItems = [NSURLQueryItem]()
+        
+        for (key, value) in parameters {
+            let queryItem = NSURLQueryItem(name: key, value: "\(value)")
+            components.queryItems!.append(queryItem)
+        }
+        
+        return components.URL!
+    }
 
 }
 

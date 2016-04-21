@@ -27,7 +27,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func attemptLogin(sender: AnyObject) {
-        
+
         activityIndicator.startAnimating()
         
         //do in background queue, don't block
@@ -97,10 +97,8 @@ class ViewController: UIViewController {
     }
     // MARK: Setup functions
     func setupViewColors() {
-        let backgroundColor = UIColor(red: 237/255.0, green: 118/255.0, blue: 38/255.0, alpha: 1)
-        self.view.backgroundColor = backgroundColor
-        let buttonColor = UIColor(red: 231/255.0, green: 61/255.0, blue: 37/255.0, alpha: 1)
-        loginButton.backgroundColor = buttonColor
+        self.view.backgroundColor = OTMConstants.UIConstants.backgroundColor
+        loginButton.backgroundColor = OTMConstants.UIConstants.buttonColor
     }
     
     func initialiseAppDelegate() -> AppDelegate {
@@ -120,8 +118,12 @@ class ViewController: UIViewController {
             let alertViewController = UIAlertController(title: "Invalid Credentials", message: "The username and/or password is incorrect", preferredStyle: UIAlertControllerStyle.Alert)
             let okAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: { (action) -> Void in
                 self.dismissViewControllerAnimated(true, completion: nil)
+                self.usernameField.text = ""
+                self.passwordField.text = ""
+                self.passwordField.resignFirstResponder()
             })
             alertViewController.addAction(okAction)
+            self.activityIndicator.stopAnimating()
             self.presentViewController(alertViewController, animated: true, completion: nil)
         }
     }
@@ -131,7 +133,7 @@ class ViewController: UIViewController {
     
     // Create request
     func createRequest(methodType: String) -> NSMutableURLRequest {
-        let request = NSMutableURLRequest(URL: NSURL(string: "https://www.udacity.com/api/session")!)
+        let request = NSMutableURLRequest(URL: NSURL(string: OTMConstants.UdacityConstants.UdacityURL)!)
         request.HTTPMethod = methodType
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")

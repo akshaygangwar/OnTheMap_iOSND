@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BF6EFB2E1CC8F0850017E84C /* OTMConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF6EFB2D1CC8F0850017E84C /* OTMConstants.swift */; };
+		BF6EFB301CC901C30017E84C /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF6EFB2F1CC901C30017E84C /* MapViewController.swift */; };
 		BFF7E0881CC79F1D001BF810 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF7E0871CC79F1D001BF810 /* AppDelegate.swift */; };
 		BFF7E08A1CC79F1D001BF810 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF7E0891CC79F1D001BF810 /* LoginViewController.swift */; };
 		BFF7E08D1CC79F1D001BF810 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFF7E08B1CC79F1D001BF810 /* Main.storyboard */; };
@@ -34,6 +36,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		BF6EFB2D1CC8F0850017E84C /* OTMConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OTMConstants.swift; sourceTree = "<group>"; };
+		BF6EFB2F1CC901C30017E84C /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		BFF7E0841CC79F1D001BF810 /* On The Map.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "On The Map.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFF7E0871CC79F1D001BF810 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BFF7E0891CC79F1D001BF810 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -99,7 +103,9 @@
 			children = (
 				BFF7E0871CC79F1D001BF810 /* AppDelegate.swift */,
 				BFF7E0891CC79F1D001BF810 /* LoginViewController.swift */,
+				BF6EFB2D1CC8F0850017E84C /* OTMConstants.swift */,
 				BFF7E08B1CC79F1D001BF810 /* Main.storyboard */,
+				BF6EFB2F1CC901C30017E84C /* MapViewController.swift */,
 				BFF7E08E1CC79F1D001BF810 /* Assets.xcassets */,
 				BFF7E0901CC79F1D001BF810 /* LaunchScreen.storyboard */,
 				BFF7E0931CC79F1D001BF810 /* Info.plist */,
@@ -256,8 +262,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BF6EFB2E1CC8F0850017E84C /* OTMConstants.swift in Sources */,
 				BFF7E08A1CC79F1D001BF810 /* LoginViewController.swift in Sources */,
 				BFF7E0881CC79F1D001BF810 /* AppDelegate.swift in Sources */,
+				BF6EFB301CC901C30017E84C /* MapViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -484,6 +492,7 @@
 				BFF7E0AE1CC79F1E001BF810 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		BFF7E0AF1CC79F1E001BF810 /* Build configuration list for PBXNativeTarget "On The MapTests" */ = {
 			isa = XCConfigurationList;
@@ -492,6 +501,7 @@
 				BFF7E0B11CC79F1E001BF810 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		BFF7E0B21CC79F1E001BF810 /* Build configuration list for PBXNativeTarget "On The MapUITests" */ = {
 			isa = XCConfigurationList;
@@ -500,6 +510,7 @@
 				BFF7E0B41CC79F1E001BF810 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
