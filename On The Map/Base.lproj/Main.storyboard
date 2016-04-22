@@ -4,6 +4,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
     </dependencies>
     <scenes>
         <!--LoginViewController-->
@@ -125,7 +126,7 @@
         <!--List-->
         <scene sceneID="TJP-PV-7vc">
             <objects>
-                <viewController id="33q-Ki-3A4" sceneMemberID="viewController">
+                <viewController id="33q-Ki-3A4" customClass="TableViewController" customModule="On_The_Map" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="fQr-Oz-Pmv"/>
                         <viewControllerLayoutGuide type="bottom" id="WzU-cu-wbh"/>
@@ -135,7 +136,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="eIP-bs-kx6">
-                                <rect key="frame" x="0.0" y="20" width="600" height="531"/>
+                                <rect key="frame" x="0.0" y="72" width="600" height="479"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="listViewPrototype" id="zkI-Dc-58a">
@@ -147,18 +148,43 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="33q-Ki-3A4" id="sti-Rp-pi4"/>
+                                    <outlet property="delegate" destination="33q-Ki-3A4" id="OMf-6u-TiV"/>
+                                </connections>
                             </tableView>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vtn-hZ-KF2">
+                                <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                                <items>
+                                    <navigationItem title="On The Map" id="XcT-mT-5YL">
+                                        <rightBarButtonItems>
+                                            <barButtonItem systemItem="refresh" id="nxl-SY-zqb">
+                                                <connections>
+                                                    <action selector="refreshTableData:" destination="33q-Ki-3A4" id="fsI-ud-iJ7"/>
+                                                </connections>
+                                            </barButtonItem>
+                                            <barButtonItem image="PinIcon" id="K8Z-5E-dTC"/>
+                                        </rightBarButtonItems>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="WzU-cu-wbh" firstAttribute="top" secondItem="eIP-bs-kx6" secondAttribute="bottom" id="2Ba-Xl-5FY"/>
+                            <constraint firstItem="Vtn-hZ-KF2" firstAttribute="leading" secondItem="iB2-D6-tdF" secondAttribute="leadingMargin" constant="-20" id="G9w-fd-Mr1"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Vtn-hZ-KF2" secondAttribute="trailing" constant="-20" id="HlL-bI-9OZ"/>
                             <constraint firstItem="eIP-bs-kx6" firstAttribute="centerX" secondItem="iB2-D6-tdF" secondAttribute="centerX" id="TV2-hq-iQZ"/>
                             <constraint firstAttribute="trailingMargin" secondItem="eIP-bs-kx6" secondAttribute="trailing" constant="-20" id="YXh-lb-JIJ"/>
                             <constraint firstItem="eIP-bs-kx6" firstAttribute="leading" secondItem="iB2-D6-tdF" secondAttribute="leadingMargin" constant="-20" id="fMA-2z-YNE"/>
-                            <constraint firstItem="eIP-bs-kx6" firstAttribute="top" secondItem="fQr-Oz-Pmv" secondAttribute="bottom" id="hRo-U2-QbV"/>
+                            <constraint firstItem="eIP-bs-kx6" firstAttribute="top" secondItem="fQr-Oz-Pmv" secondAttribute="bottom" constant="52" id="hRo-U2-QbV"/>
+                            <constraint firstItem="Vtn-hZ-KF2" firstAttribute="top" secondItem="fQr-Oz-Pmv" secondAttribute="bottom" constant="8" id="mg5-Om-cG6"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="List" image="ListIcon" id="cOe-z0-GHU"/>
+                    <connections>
+                        <outlet property="tableView" destination="eIP-bs-kx6" id="3kx-gM-qDl"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BES-Cd-ott" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -222,6 +248,7 @@
     <resources>
         <image name="ListIcon" width="32" height="32"/>
         <image name="MapIcon" width="32" height="32"/>
+        <image name="PinIcon" width="32" height="32"/>
         <image name="UdacityLogo" width="256" height="256"/>
     </resources>
 </document>
